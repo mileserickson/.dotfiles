@@ -4,14 +4,9 @@ alias con="sudo cu -s 9600 -l /dev/tty.usbserial"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias jn='jupyter notebook --no-browser'
 
-# Add AWS keys to environment
-export AWS_CREDENTIALS_FILE=$HOME/.aws/credentials.csv
-export AWS_ACCESS_KEY_ID=$(tail -n 1 $AWS_CREDENTIALS_FILE | cut -f 2 -d ,)
-export AWS_SECRET_ACCESS_KEY=$(tail -n 1 $AWS_CREDENTIALS_FILE | cut -f 3 -d ,)
-
 # Set pager, editor, command editor 
 export PAGER=/usr/bin/less
-export EDITOR=vim
+export EDITOR=/usr/bin/vim
 set -o vi
 
 # Hadoop/Spark
@@ -30,9 +25,6 @@ export HIVE_HOME=/usr/local/Cellar/hive/1.2.1/libexec
 export HCAT_HOME=/usr/local/Cellar/hive/1.2.1/libexec/hcatalog
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
-# OneBusAway API
-source $HOME/.secrets/oba.sh
-
 # Define Colors
 green="\[\033[0;32m\]"
 blue="\[\033[0;34m\]"
@@ -41,6 +33,9 @@ reset="\[\033[0m\]"
 
 # Bash Completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# Disable Chrome swipe-to-go-back
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
 
 # Customize command prompt
 source $HOME/.dotfiles/bin/git-prompt.sh
@@ -63,5 +58,5 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:/usr/local/texlive/2015/bin/x86_64-darwin/"
 
 # Anaconda
-export PATH="/Users/miles/anaconda/bin:$PATH"
+export PATH="$HOME/anaconda/bin:$PATH"
 
